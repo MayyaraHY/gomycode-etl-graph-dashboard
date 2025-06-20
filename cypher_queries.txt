@@ -1,0 +1,19 @@
+Q1. MATCH (s:student {name: "Alice"})-[:Attend]->(ss:session)
+RETURN ss.id, ss.module, ss.instructor;
+
+Q2. MATCH (s:student)-[:Attend]->(ss:session)
+RETURN s.name AS student_name, COUNT(ss) AS attendance_count
+ORDER BY attendance_count DESC
+LIMIT 3;
+
+Q3. MATCH (se:session)<-[:Attend]-(s:student)
+RETURN se.session_id, se.module, COUNT(s) AS nbStudents
+ORDER BY se.session_id;
+
+Q4. MATCH (se:session)<-[:Attend]-(s:student)
+RETURN se.module, COUNT(DISTINCT s) AS nbUniqueStudents
+ORDER BY se.module;
+
+Q5. MATCH (s:student)
+WHERE NOT (s)-[:Attend]->(:session)
+RETURN s;
