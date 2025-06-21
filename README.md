@@ -76,6 +76,7 @@ This pipeline provides a clear view of how users behave across countries, age gr
 ---
 
 ## 📂 Files
+- etl_task.ipynb : python notebook code
 - `/images/cleaned_data.csv`: Final cleaned dataset
 - Dashboards available via Looker Studio [Looker Studio Dashboard link](https://lookerstudio.google.com/u/0/reporting/6feaeb65-fc8c-4978-b952-f789cf271bec/page/yDaOF)
 
