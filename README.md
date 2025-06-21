@@ -79,7 +79,76 @@ This pipeline provides a clear view of how users behave across countries, age gr
 - etl_task.ipynb : python notebook code
 - `/images/cleaned_data.csv`: Final cleaned dataset
 - Dashboards available via Looker Studio [Looker Studio Dashboard link](https://lookerstudio.google.com/u/0/reporting/6feaeb65-fc8c-4978-b952-f789cf271bec/page/yDaOF)
+- `/images/`looker studio dashboards` : screenshots for the dashboard 
 
 
 ---
+
+
+# 🧠 Task 2 – Graph Schema Design & Cypher Query Challenge
+
+## 📁 Overview
+This task focuses on modeling a graph database using Neo4j Desktop. CSV files were imported to define nodes such as students, sessions, modules, and professors, along with their relationships. Then, several Cypher queries were written and executed to explore and analyze the graph.
+
+---
+
+### ✅ What is your data pipeline doing and why?
+
+The data pipeline processes multiple CSV files to build a connected graph model in **Neo4j Desktop**. It performs the following steps:
+- Imports CSV files representing students, sessions, modules, and professors.
+- Creates nodes for each entity and connects them through meaningful relationships to create a relevant structure.
+- Enables analysis using Cypher queries.
+
+
+---
+
+### ✅ How did you design your graph schema?
+
+The graph schema includes the following node types:
+- `students` with properties like `id`, `name`, `email`
+- `sessions` with `id`, `date`, `module`, `instructor`
+- `attendance` with `student_id`, `session_id`
+
+And these relationship types:
+- `(:Student)-[:ATTENDED]->(:Session)`
+- `(:Student)-[:ENROLLED_IN]->(:Module)`
+- `(:Professor)-[:TAUGHT]->(:Session)`
+
+The relationships model real-life academic interactions. This schema was chosen for its simplicity, clarity, and alignment with real-world logic.
+
+---
+
+### ✅ What are your Cypher and SQL queries solving?
+
+The following key insights are solved using Cypher queries:
+- Q1: List all sessions attended by the student named “Alice”
+- Q2: Find the top 3 students with the most attended sessions
+- Q3: Count how many students attended each session
+- Q4: For each module, count unique students who attended at least one session
+- Q5: List students who have never attended any session
+
+These queries help answer core questions about engagement, participation, and learning behavior.
+
+---
+
+### ✅ Assumptions, Challenges & Design Decisions
+
+**Assumptions:**
+- attendance is missing the time frame
+- instructor is an attribute in session where I believe it should be in another seperate table same for module
+
+**Challenges:**
+- Neo4j Desktop requires manual placement of CSV files in the `/import` folder.
+
+**Design Decisions:**
+- Attendance was modeled as a `relationship` instead of a `node`, since it contains no additional data.
+
+## 📂 Files
+| File/Folder | Description |
+|-------------|-------------|
+| `cypher_queries.txt` | Contains all Cypher queries |
+| `/images/neo4j diagram` | Graph design and import structure |
+| `/images/neo4j preview` | Graph data visualization |
+| `/images/answers to cypher queries challenge` | Screenshots of query outputs |
+
 
