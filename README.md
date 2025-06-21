@@ -92,7 +92,7 @@ This task focuses on modeling a graph database using Neo4j Desktop. CSV files we
 
 ---
 
-### ✅ What is your data pipeline doing and why?
+### ✅ data pipeline
 
 The data pipeline processes multiple CSV files to build a connected graph model in **Neo4j Desktop**. It performs the following steps:
 - Imports CSV files representing students, sessions, modules, and professors.
@@ -102,7 +102,7 @@ The data pipeline processes multiple CSV files to build a connected graph model 
 
 ---
 
-### ✅ How did you design your graph schema?
+### ✅ graph schema
 
 The graph schema includes the following node types:
 - `students` with properties like `id`, `name`, `email`
@@ -120,20 +120,20 @@ The relationships model real-life academic interactions. This schema was chosen 
 
 ### ✅ What are your Cypher and SQL queries solving?
 
-The following key insights are solved using Cypher queries:
-- Q1: List all sessions attended by the student named “Alice”
-- Q2: Find the top 3 students with the most attended sessions
-- Q3: Count how many students attended each session
-- Q4: For each module, count unique students who attended at least one session
-- Q5: List students who have never attended any session
+- **Listing Sessions**: Retrieve all sessions attended by a specific student.
+- **Top Students**: Identify the top students with the highest number of attended sessions.
+- **Session Attendance**: Count the number of students who attended each session.
+- **Module Attendance**: Determine the number of unique students who attended at least one session for each module.
+- **Non-Attending Students**: Find students who have never attended any session.
 
-These queries help answer core questions about engagement, participation, and learning behavior.
+These queries demonstrate common data analysis and helpanswer core questions about engagement, participation, and learning behavior.
 
 ---
 
 ### ✅ Assumptions, Challenges & Design Decisions
 
 **Assumptions:**
+- The data provided in the CSV files is clean, consistent, and accurately represents the entities and relationships in the graph model
 - attendance is missing the time frame
 - instructor is an attribute in session where I believe it should be in another seperate table same for module
 
@@ -151,4 +151,58 @@ These queries help answer core questions about engagement, participation, and le
 | `/images/neo4j preview` | Graph data visualization |
 | `/images/answers to cypher queries challenge` | Screenshots of query outputs |
 
+---
 
+# 🧠 Bonus: Graph-to-SQL Conversion
+
+## Overview
+
+This section of the project focuses on translating a graph-based data model into an analogical relational schema and rewriting Cypher queries into SQL (PostgreSQL-compatible). The goal is to demonstrate how data and queries can be represented and executed in both graph and relational database contexts.
+
+### ✅ data pipeline
+this project involves two main tasks:
+
+1. **Schema Translation**: Converting a graph schema, designed for a Neo4j graph database, into a relational schema suitable for a PostgreSQL relational database. This helps in understanding how the same data can be structured differently based on the database model.
+
+2. **Query Translation**: Rewriting Cypher queries, which are used in Neo4j to traverse and query graph data, into SQL queries compatible with PostgreSQL. This illustrates how operations performed on graph data can be adapted for relational data.
+
+
+### ✅ graph schema
+student and session where two seperate table with an intermediate table attendance. 
+I also added a table instructor with many to one relation with table session
+table module with many to many relation with table student
+
+### ✅ What are your Cypher and SQL queries solving?
+
+- **Listing Sessions**: Retrieve all sessions attended by a specific student.
+- **Top Students**: Identify the top students with the highest number of attended sessions.
+- **Session Attendance**: Count the number of students who attended each session.
+- **Module Attendance**: Determine the number of unique students who attended at least one session for each module.
+- **Non-Attending Students**: Find students who have never attended any session.
+
+These queries demonstrate common data analysis and helpanswer core questions about engagement, participation, and learning behavior.
+
+### ✅ Assumptions, Challenges & Design Decisions
+
+### Assumptions
+
+- The data provided in the CSV files is clean, consistent, and accurately represents the entities and relationships in the graph model.
+
+### Challenges
+
+- **Schema Translation**: Translating a graph schema into a relational schema involves careful consideration of how relationships are represented, often requiring junction tables to maintain data integrity.
+
+- **Query Translation**: Converting Cypher queries to SQL requires a deep understanding of both query languages and the ability to think in both graph and relational paradigms.
+
+### Design Decisions
+
+- **Junction Tables**: Used to represent many-to-many relationships in the relational schema, such as the `Attendance` table linking `Student` and `Session`.
+
+- **Query Optimization**: SQL queries were designed to be efficient and leverage the strengths of relational databases, such as using `JOIN` operations to combine data from multiple tables.
+
+## 📂 Files
+| File/Folder | Description |
+|-------------|-------------|
+| `sql_querries.sql` | Contains all sql querries |
+| `/images/UML class diagram` | uml class diagram |
+| `/images/answers to sql queries` | Screenshots of query outputs |
